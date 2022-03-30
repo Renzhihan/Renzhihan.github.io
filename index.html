@@ -71,6 +71,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-关于tx2上import-torch导致Segmentation-fault-core-dumped-的一种解决方案" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/30/%E5%85%B3%E4%BA%8Etx2%E4%B8%8Aimport-torch%E5%AF%BC%E8%87%B4Segmentation-fault-core-dumped-%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="dt-published" datetime="2022-03-30T14:27:04.000Z" itemprop="datePublished">2022-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/30/%E5%85%B3%E4%BA%8Etx2%E4%B8%8Aimport-torch%E5%AF%BC%E8%87%B4Segmentation-fault-core-dumped-%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">关于tx2上import torch导致Segmentation fault(core dumped)的一种解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>环境：tx2(dji manifold)+jetpack4.4+cuda10.2+pytorch1.7</p>
+<p>错误复现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">Segmentation fault (core dumped)</span><br></pre></td></tr></table></figure>
+<p>网上有朋友说先import cv2再import torch，但是这个方法好像只是针对于很早的一个版本的torch有效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import torch</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">File “”, line 1, <span class="keyword">in</span></span><br><span class="line">File “/home/dji/.local/lib/python3.6/site-packages/torch/init.py”, line 190, <span class="keyword">in</span></span><br><span class="line">from torch.C import *</span><br><span class="line">ImportError: /home/dji/.local/lib/python3.6/site-packages/torch/lib/libtorch_cpu.so: undefined symbol: sgesdd</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用gdb调试的结果如下，不过这个报错我看不懂，是在网上搜资料时对照别人的解决方案做的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(gdb) r -c “import torch”</span><br><span class="line">Starting program: /usr/bin/python3 -c “import torch”</span><br><span class="line">[Thread debugging using libthread_db enabled]</span><br><span class="line">Using host libthread_db library “/lib/aarch64-linux-gnu/libthread_db.so.1”.</span><br></pre></td></tr></table></figure>
+
+<p>我之前同时配置了两台可以正常运行torch的妙算，放假回家后通过ssh远程连接妙算进行调试，结果有一台的torch环境突然给崩溃了。在网上搜索了很多资料都没有找到可行和有效的解决方案。开虚拟环境和删除torch再重新安装torch都没用。<br>于是我去nvidia的论坛提问，技术小哥哥第一次告诉我可能是<strong>blas</strong>版本的问题，和他核对了一下blas的版本都是<strong>0.2.20+ds-4</strong>之后排除了这个原因。他还告诉我可能是python的pip库有冲突，当时除了这个方法就只有刷机了，于是我一个一个的对照两个妙算的python库版本，最后发现两个妙算只有<strong>scipy</strong>的版本不一样，将scipy删除之后错误就解决了。</p>
+<p><strong>分析</strong>：由于妙算（tx2）是arm架构，如果直接使用pip安装scipy会安装上一个十分奇怪的版本，有可能不是自己手动安的而是在安装别的库的时候他给自动加进去了scipy导致这个隐蔽的错误。Arm上的scipy安装还是需要从源码自己编译的。不要图方便直接用pip安装。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/30/%E5%85%B3%E4%BA%8Etx2%E4%B8%8Aimport-torch%E5%AF%BC%E8%87%B4Segmentation-fault-core-dumped-%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cl1dnwrng0000esubbmb7hu4f" data-title="关于tx2上import torch导致Segmentation fault(core dumped)的一种解决方案" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-SSH及SCP极简使用教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
@@ -237,6 +288,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E5%85%B3%E4%BA%8Etx2%E4%B8%8Aimport-torch%E5%AF%BC%E8%87%B4Segmentation-fault-core-dumped-%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">关于tx2上import torch导致Segmentation fault(core dumped)的一种解决方案</a>
+          </li>
         
           <li>
             <a href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">SSH及SCP极简使用教程</a>
