@@ -71,6 +71,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SSH及SCP极简使用教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-03-30T14:25:50.000Z" itemprop="datePublished">2022-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">SSH及SCP极简使用教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>使用VSCode的remote ssh插件可以很方便的连接到远程主机<br>插件的安装直接在扩展里安装就可以<br>安装好之后在底下的终端进行连接<br><code>ssh -p port user@ host</code><br>port是指连接的端口，user是连接的用户名，host是主机所在的ip<br>例如我现在想要连接一个ip为192.168.1.121的10501端口，用户名为dji，那么ssh命令就是：<br><code>ssh -p 10501 dji@192.168.1.121</code></p>
+<h2 id="SCP"><a href="#SCP" class="headerlink" title="SCP"></a>SCP</h2><p>SCP用于在linux下进行远程拷贝文件，常用于将本地文件复制到远程或是将远程的文件复制到本地</p>
+<p><code>scp local_file remote_username@remote_ip:remote_folder</code><br><code>scp local_file remote_username@remote_ip:remote_file</code><br>local_file为文件在本地的路径，remote——username为主机的用户名，remote_ip为主机所在ip地址，remote_folder为远程主机文件路径，就是声明将文件复制到主机的哪个位置，remote_file与remote_folder相似，但是可以改变复制过去的文件名字<br>例如，现在需要将本地D:\a.txt复制到ip为192.168.1.121的10501端口，用户名为dji</p>
+<ol>
+<li>复制到主机的根目录下，scp命令为:<br><code>scp -P 10501 D:\a.txt dji@192.168.1.121:~</code></li>
+<li>复制到主机的根目录下，同时将其重命名为b.txx 此时scp命令为:<br><code>scp -P 10501 D:\a.txt dji@192.168.1.121:~/b.txt</code></li>
+</ol>
+<p>从远程复制到本地，只要将从本地复制到远程的命令的后2个参数调换顺序即可<br><code>scp -P 10501 dji@192.168.1.121:~\a.txt D:\a.txt</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" data-id="cl1dnvh9q0000xwub0z8k3mmc" data-title="SSH及SCP极简使用教程" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-New-Post" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/30/New-Post/" class="article-date">
@@ -191,6 +237,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">SSH及SCP极简使用教程</a>
+          </li>
         
           <li>
             <a href="/2022/03/30/New-Post/">New-Post</a>

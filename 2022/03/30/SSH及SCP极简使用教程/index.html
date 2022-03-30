@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>New-Post | Hexo</title>
+  <title>SSH及SCP极简使用教程 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="如果你已经掌握了python同时从来没有接触过c++，那就直接用opencv+python先完成你的任务，我之前做过一些python的实时目标检测程序，和队友用c++做的速度和效果基本上都是一样的。但是后面落地的时候可能在python上遇到一些问题，比如边缘设备部署，工业相机sdk，需要改进opencv封装好的算法，或者其他一些python无法解决的问题，这时再用c++重新实现一遍。两个语言的ap">
+  <meta name="description" content="SSH使用VSCode的remote ssh插件可以很方便的连接到远程主机插件的安装直接在扩展里安装就可以安装好之后在底下的终端进行连接ssh -p port user@ hostport是指连接的端口，user是连接的用户名，host是主机所在的ip例如我现在想要连接一个ip为192.168.1.121的10501端口，用户名为dji，那么ssh命令就是：ssh -p 10501 dji@192">
 <meta property="og:type" content="article">
-<meta property="og:title" content="New-Post">
-<meta property="og:url" content="http://example.com/2022/03/30/New-Post/index.html">
+<meta property="og:title" content="SSH及SCP极简使用教程">
+<meta property="og:url" content="http://example.com/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="如果你已经掌握了python同时从来没有接触过c++，那就直接用opencv+python先完成你的任务，我之前做过一些python的实时目标检测程序，和队友用c++做的速度和效果基本上都是一样的。但是后面落地的时候可能在python上遇到一些问题，比如边缘设备部署，工业相机sdk，需要改进opencv封装好的算法，或者其他一些python无法解决的问题，这时再用c++重新实现一遍。两个语言的ap">
+<meta property="og:description" content="SSH使用VSCode的remote ssh插件可以很方便的连接到远程主机插件的安装直接在扩展里安装就可以安装好之后在底下的终端进行连接ssh -p port user@ hostport是指连接的端口，user是连接的用户名，host是主机所在的ip例如我现在想要连接一个ip为192.168.1.121的10501端口，用户名为dji，那么ssh命令就是：ssh -p 10501 dji@192">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-30T14:17:37.000Z">
-<meta property="article:modified_time" content="2022-03-30T14:22:36.746Z">
+<meta property="article:published_time" content="2022-03-30T14:25:50.000Z">
+<meta property="article:modified_time" content="2022-03-30T14:26:17.566Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-New-Post" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-SSH及SCP极简使用教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/03/30/New-Post/" class="article-date">
-  <time class="dt-published" datetime="2022-03-30T14:17:37.000Z" itemprop="datePublished">2022-03-30</time>
+    <a href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-03-30T14:25:50.000Z" itemprop="datePublished">2022-03-30</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      New-Post
+      SSH及SCP极简使用教程
     </h1>
   
 
@@ -95,13 +95,19 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>如果你已经掌握了python同时从来没有接触过c++，那就直接用opencv+python先完成你的任务，我之前做过一些python的实时目标检测程序，和队友用c++做的速度和效果基本上都是一样的。但是后面落地的时候可能在python上遇到一些问题，比如边缘设备部署，工业相机sdk，需要改进opencv封装好的算法，或者其他一些python无法解决的问题，这时再用c++重新实现一遍。两个语言的api都是差不多的。</p>
-<p>以上都是结合个人项目经验，不适用于所有场合。</p>
+        <h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>使用VSCode的remote ssh插件可以很方便的连接到远程主机<br>插件的安装直接在扩展里安装就可以<br>安装好之后在底下的终端进行连接<br><code>ssh -p port user@ host</code><br>port是指连接的端口，user是连接的用户名，host是主机所在的ip<br>例如我现在想要连接一个ip为192.168.1.121的10501端口，用户名为dji，那么ssh命令就是：<br><code>ssh -p 10501 dji@192.168.1.121</code></p>
+<h2 id="SCP"><a href="#SCP" class="headerlink" title="SCP"></a>SCP</h2><p>SCP用于在linux下进行远程拷贝文件，常用于将本地文件复制到远程或是将远程的文件复制到本地</p>
+<p><code>scp local_file remote_username@remote_ip:remote_folder</code><br><code>scp local_file remote_username@remote_ip:remote_file</code><br>local_file为文件在本地的路径，remote——username为主机的用户名，remote_ip为主机所在ip地址，remote_folder为远程主机文件路径，就是声明将文件复制到主机的哪个位置，remote_file与remote_folder相似，但是可以改变复制过去的文件名字<br>例如，现在需要将本地D:\a.txt复制到ip为192.168.1.121的10501端口，用户名为dji</p>
+<ol>
+<li>复制到主机的根目录下，scp命令为:<br><code>scp -P 10501 D:\a.txt dji@192.168.1.121:~</code></li>
+<li>复制到主机的根目录下，同时将其重命名为b.txx 此时scp命令为:<br><code>scp -P 10501 D:\a.txt dji@192.168.1.121:~/b.txt</code></li>
+</ol>
+<p>从远程复制到本地，只要将从本地复制到远程的命令的后2个参数调换顺序即可<br><code>scp -P 10501 dji@192.168.1.121:~\a.txt D:\a.txt</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/30/New-Post/" data-id="cl1dnnnvg0000osub6shrak78" data-title="New-Post" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" data-id="cl1dnvh9q0000xwub0z8k3mmc" data-title="SSH及SCP极简使用教程" class="article-share-link">Share</a>
       
       
       
@@ -111,19 +117,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/03/30/SSH%E5%8F%8ASCP%E6%9E%81%E7%AE%80%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          SSH及SCP极简使用教程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/03/30/New-Post/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">New-Post</div>
     </a>
   
 </nav>
